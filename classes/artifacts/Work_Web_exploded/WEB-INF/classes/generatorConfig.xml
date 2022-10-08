@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry location="D:\Utils\mysql-connector-java-5.0.8-bin.jar" />
+  <context id="context1" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/work" 
+    				userId="root" password="123456" />
+    <javaModelGenerator targetPackage="com.song.work.model" targetProject="Work" >
+    	 <property name="constructorBased" value="false"/>
+
+        <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+        <property name="pojo" value="true"/>
+
+        <!-- for MyBatis3 / MyBatis3Simple
+            是否创建一个不可变的类，如果为true，
+            那么MBG会创建一个没有setter方法的类，取而代之的是类似constructorBased的类
+         -->
+        <property name="immutable" value="false"/>
+
+        <!-- 设置一个根对象，
+            如果设置了这个根对象，那么生成的keyClass或者recordClass会继承这个类；在Table的rootClass属性中可以覆盖该选项
+            注意：如果在key class或者record class中有root class相同的属性，MBG就不会重新生成这些属性了，包括：
+                1，属性名相同，类型相同，有相同的getter/setter方法；
+         -->
+      <!--   <property name="rootClass" value="com._520it.mybatis.domain.BaseDomain"/> -->
+
+        <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
+        <property name="trimStrings" value="false"/>
+    </javaModelGenerator>
+    
+    <sqlMapGenerator targetPackage="com.song.work.dao.mapper" targetProject="Work" />
+    
+    <javaClientGenerator targetPackage="com.song.work.dao.mapper" targetProject="Work" type="XMLMAPPER" />
+    
+    <!-- <table tableName="admin" />
+    <table tableName="favorites"/>
+    <table tableName="company" />
+    <table tableName="user" />
+    <table tableName="job" /> 
+    <table tableName="apply"/> -->
+     <table tableName="eboard" />
+  </context>
+  
+</generatorConfiguration>

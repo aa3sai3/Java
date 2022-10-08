@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->  
+    <context:component-scan base-package="com.song.work.controller" />  
+     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->  
+    <context:component-scan base-package="com.song.work.service" /> 
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <!-- 完成请求和注解POJO的映射 -->  
+    <bean  
+        class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
+    </bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!--  允许上传的最大文件大小，默认-1表示无限制 -->
+		<property name="maxUploadSize" value="104857600" />
+		<!-- 文件上传时允许写到内存中的最大值 -->
+		<property name="maxInMemorySize" value="4096" />
+	</bean>
+	
+ 	 <mvc:default-servlet-handler/>
+ 	 <!-- 配置可以访问静态资源 -->
+ 	 <mvc:resources location="/WEB-INF/resources/css/" mapping="/css/**"/>
+  	 <mvc:resources location="/WEB-INF/resources/js/" mapping="/js/**"/>
+  	 <mvc:resources location="/WEB-INF/resources/images/" mapping="/images/**"/>
+    <!-- 定义跳转的文件的前后缀 ，视图模式配置-->  
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/WEB-INF/jsp/" />  
+        <property name="suffix" value=".jsp" />  
+    </bean>  
+       
+</beans>  
